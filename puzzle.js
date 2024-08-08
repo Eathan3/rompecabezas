@@ -1,6 +1,20 @@
 const PUZZLE_DIFFICULTY = 12; 
 const PIECE_SIZE = 200; // 200% más grande 
 const TAB_RATIO = 0.2; 
+const pieceOrder = [
+    { index: 0, message: "Terapia Psicológica" },
+    { index: 10, message: "Gestión Emocional" },
+    { index: 5, message: "Diario Emocional" },
+    { index: 6, message: "Gratitud" },
+    { index: 7, message: "Meditación" },
+    { index: 4, message: "Tres Bendiciones" },
+    { index: 1, message: "Oración" },
+    { index: 9, message: "Voluntariado" },
+    { index: 2, message: "Arteterapia" },
+    { index: 11, message: "Perdón" },
+    { index: 3, message: "Lidérate" },
+    { index: 8, message: "Planeación Estratégica Personal" }
+];
 
 let img;
 let pieces = [];
@@ -119,33 +133,48 @@ function generateClipPath(size, tabs) {
     return `polygon(${path})`;
 }
 
-
 function createButtons() {
     buttonContainer.innerHTML = ''; // Limpiar el contenedor de botones
-    for (let i = 0; i < pieces.length; i++) {
+    for (let i = 0; i < pieceOrder.length; i++) {
         const button = document.createElement('button');
         button.className = 'button';
 
         // Cambiar el texto del botón aquí:
-        button.textContent = `HERRAMIENTA ${i + 1}`; // Mostrar "HERRAMIENTA 1", "HERRAMIENTA 2", etc. 
+        button.textContent = `HERRAMIENTA ${i + 1}`; // Mostrar "HERRAMIENTA 1", "HERRAMIENTA 2", etc.
 
-        button.addEventListener('click', () => movePiece(i)); 
+        const pieceIndex = pieceOrder[i].index;
+        button.addEventListener('click', () => movePiece(pieceIndex)); 
         buttonContainer.appendChild(button);
     }
 }
 
-
 function shufflePieces() {
     pieces.forEach(piece => {
-        const x = Math.random() * (window.innerWidth - piece.element.offsetWidth);
-        const y = Math.random() * (window.innerHeight - piece.element.offsetHeight);
-        piece.element.style.transform = `translate(${x}px, ${y}px)`; 
-        piece.element.classList.remove('show'); 
+        const puzzleContainerRect = puzzleContainer.getBoundingClientRect();
+        const pieceWidth = piece.element.offsetWidth;
+        const pieceHeight = piece.element.offsetHeight;
+
+        let x, y;
+
+        // Generar una posición aleatoria fuera del contenedor del rompecabezas
+        do {
+            x = Math.random() * window.innerWidth;
+            y = Math.random() * window.innerHeight;
+        } while (
+            // Asegurarse de que las piezas no estén dentro del contenedor del rompecabezas
+            (x > puzzleContainerRect.left - pieceWidth && x < puzzleContainerRect.right) &&
+            (y > puzzleContainerRect.top - pieceHeight && y < puzzleContainerRect.bottom) ||
+            // Asegurarse de que las piezas no se superpongan con los botones en el lado izquierdo
+            (x < 200) // Ancho del panel de botones
+        );
+
+        piece.element.style.transform = `translate(${x}px, ${y}px)`;
+        piece.element.classList.remove('show');
         piece.element.firstChild.style.display = 'none';
     });
-    isPuzzleSolved = false; 
-}
 
+    isPuzzleSolved = false;
+}
 function resetPuzzle() {
     isPuzzleSolved = false; // Resetear la variable de estado
 
@@ -220,16 +249,55 @@ function checkWin() {
         gsap.to(puzzleContainer, { 
             duration: 1, 
             rotation: 360, 
-            ease: "power2.inOut" 
+            ease: "power2.inOut",
+            onComplete: () => {
+                isPuzzleSolved = true;
+                gsap.to(puzzleContainer, {
+                    duration: 2,
+                    scale: 2,
+                    ease: "power2.inOut",
+                    onComplete: () => {
+                        pieces.forEach(piece => {
+                            piece.element.style.border = 'none';
+                            piece.element.firstChild.style.display = 'none';
+                        });
+                        showFinalMessage();
+                    }
+                });
+                document.getElementById('buttonContainer').style.display = 'none'; // Ocultar botones de herramienta
+            }
         });
-        isPuzzleSolved = true; 
     }
+}
+
+function showFinalMessage() {
+    const finalMessage = document.createElement('div');
+    finalMessage.textContent = "si puedes regresar a ti!";
+    finalMessage.style.position = 'absolute';
+    finalMessage.style.top = '80%';
+    finalMessage.style.left = '50%';
+    finalMessage.style.transform = 'translate(-50%, -50%)';
+    finalMessage.style.fontSize = '3em';
+    finalMessage.style.color = 'white';
+    finalMessage.style.textShadow = '2px 2px 4px #000000';
+    finalMessage.style.opacity = 0;
+    document.body.appendChild(finalMessage);
+    
+    gsap.to(finalMessage, {
+        duration: 2,
+        opacity: 1,
+        scale: 1.5,
+        ease: "elastic.out"
+    });
 }
 
 
 function sample(values) {
     return values[Math.floor(Math.random() * values.length)]; 
 }
+
+
+
 
 
 init();

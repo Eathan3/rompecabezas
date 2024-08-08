@@ -50,3 +50,24 @@ body {
     border: none;
     border-radius: 5px;
 }
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+    z-index: 10;
+}
+
+#finalMessage {
+    position: fixed;
+    bottom: 80px; /* Ajusta la posición del mensaje */
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    opacity: 0;
+    z-index: 11;
+}
