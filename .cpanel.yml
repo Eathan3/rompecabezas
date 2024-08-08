@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYDIR=${CPANEL_PRIMARY_DOMAIN}/public_html/coach.neona.tech
+    - /bin/cp -R * ${DEPLOYDIR}
