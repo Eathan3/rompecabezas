@@ -127,7 +127,7 @@ function createButtons() {
         button.className = 'button';
 
         // Cambiar el texto del botón aquí:
-        button.textContent = `PASO ${i + 1}`; // Mostrar "PASO 1", "PASO 2", etc. 
+        button.textContent = `HERRAMIENTA ${i + 1}`; // Mostrar "HERRAMIENTA 1", "HERRAMIENTA 2", etc. 
 
         button.addEventListener('click', () => movePiece(i)); 
         buttonContainer.appendChild(button);
