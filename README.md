@@ -73,13 +73,6 @@ Este proyecto está bajo la Licencia MIT. Puedes ver más detalles en el archivo
 ```
 
 
-### Trabajo Realizado por Farid Jiménez
-
-> **Derechos reservados a Farid Jiménez**
-
----
-
-**Sígueme en Instagram para más actualizaciones:**
 
 [![Instagram](https://img.shields.io/badge/Instagram-neona.tech-833AB4?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/neona.tech)
 
