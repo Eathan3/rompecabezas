@@ -1,3 +1,6 @@
+
+
+```markdown
 ███╗   ██╗███████╗ ██████╗ ███╗   ██╗ █████╗     ████████╗███████╗ ██████╗██╗  ██╗
 ████╗  ██║██╔════╝██╔═══██╗████╗  ██║██╔══██╗    ╚══██╔══╝██╔════╝██╔════╝██║  ██║
 ██╔██╗ ██║█████╗  ██║   ██║██╔██╗ ██║███████║       ██║   █████╗  ██║     ███████║
@@ -6,7 +9,7 @@
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝       ╚═╝   ╚══════╝ ╚═════╝╚═╝  ╚═╝
                                                                                   
 
-
+```
 
 ```markdown
 # Rompecabezas Terapias
@@ -68,7 +71,7 @@ Este proyecto fue desarrollado como una herramienta interactiva para explorar di
 
 Este proyecto está bajo la Licencia MIT. Puedes ver más detalles en el archivo `LICENSE`.
 ```
-
+```markdown
 Esta estructura proporciona una visión clara y detallada del proyecto, cubriendo todas las funcionalidades, tecnologías utilizadas, instrucciones de instalación y uso, así como directrices para contribuciones.
 ---
 
@@ -83,3 +86,4 @@ Esta estructura proporciona una visión clara y detallada del proyecto, cubriend
 [![Instagram](https://img.shields.io/badge/Instagram-neona.tech-833AB4?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/neona.tech)
 
 ---
+```
