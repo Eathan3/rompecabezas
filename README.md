@@ -11,7 +11,7 @@
 
 ```
 
-```markdown
+
 # Rompecabezas Terapias
 
 Este proyecto es un rompecabezas interactivo que presenta diferentes terapias. Cada pieza del rompecabezas representa una terapia y se puede mover haciendo clic en los botones correspondientes.
@@ -70,9 +70,10 @@ Este proyecto fue desarrollado como una herramienta interactiva para explorar di
 ## Licencia
 
 Este proyecto está bajo la Licencia MIT. Puedes ver más detalles en el archivo `LICENSE`.
-```
+
 
 
 
 [![Instagram](https://img.shields.io/badge/Instagram-neona.tech-833AB4?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/neona.tech)
 
+```
