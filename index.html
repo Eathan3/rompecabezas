@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            background: #333;
-            color: #ddd;
-            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e1ccd6, #ff1493, #f5f5f5);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+            font-family: Arial, sans-serif;color: #ddd;
+            font-family: 'Cooper Hewitt', sans-serif;
             display: flex; /* Para acomodar botones a la izquierda */
         }
         #left-panel { 
@@ -29,6 +31,8 @@
             height: 600px; /* 200% más grande */
             border: 1px solid #ddd;
             background: #111;
+            z-index: 1; /* Asegúrate de que este valor sea menor que el de #controls */
+
         }
         .puzzle-piece {
             position: absolute;
@@ -55,23 +59,28 @@
         }
         #controls {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 100px;
+            z-index: 2
         }
         .button {
             margin: 5px 0; /* Margen superior e inferior */ 
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            background-color: #007bff;
+            background-color: #800080;
             color: white;
             border: none;
+            border: 1px solid white; /* Añadir un borde blanco */
+
             border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Añadir una sombra suave */
+
         }
     </style>
 </head>
 <body>
     <div id="left-panel"> 
-        <div id="floatingTitle">¿Qué hacer después de la crisis? Kit de herramientas</div>
+        <div id="floatingTitle">¿Qué hacer después de la crisis?</div>
         <div id="buttonContainer"></div>
     </div>
     <div id="game-area"> 
@@ -79,7 +88,7 @@
         <div id="controls">
             <button id="resetButton" class="button" style="background-color:rgb(107, 17, 7);">Empezar de nuevo</button>
             <div>Movimientos: <span id="moves">0</span></div>
-            <div>Progreso: <span id="progress">0</span></div> 
+          
         </div>
     </div>
 

@@ -1,3 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Cooper+Hewitt:wght@400;700&display=swap" rel="stylesheet">
+
+    <meta charset="utf8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kit de herramientas</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: #333;
+            color: #ddd;
+            font-family: Arial, sans-serif;
+            display: flex; /* Para acomodar botones a la izquierda */
+        }
+        #left-panel { 
+            width: 200px; 
+            padding: 20px; 
+        }
+        #buttonContainer { 
+            display: flex; 
+            flex-direction: column; /* Botones uno debajo del otro */ 
+        }
+        #puzzleContainer {
+            position: relative;
+            margin: 20px; 
+            width: 800px; /* 200% más grande */
+            height: 600px; /* 200% más grande */
+            border: 1px solid #ddd;
+            background: #111;
+        }
+        .puzzle-piece {
+            position: absolute;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            background-color: white;
+            cursor: pointer;
+        }
+        .puzzle-piece span { 
+            display: none; 
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white; 
+            font-weight: bold;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; /* Sombra de texto */
+            padding: 5px 10px; 
+            border-radius: 5px;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente */
+        }
+        .show span {
+            display: block;
+        }
+        #controls {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button {
+            margin: 5px 0; /* Margen superior e inferior */ 
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="left-panel"> 
+        <div id="floatingTitle">¿Qué hacer después de la crisis? Kit de herramientas</div>
+        <div id="buttonContainer"></div>
+    </div>
+    <div id="game-area"> 
+        <div id="puzzleContainer"></div>
+        <div id="controls">
+            <button id="resetButton" class="button" style="background-color:rgb(107, 17, 7);">Empezar de nuevo</button>
+            <div>Movimientos: <span id="moves">0</span></div>
+            <div>Progreso: <span id="progress">0</span></div> 
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="puzzle.js"></script> 
+</body>
+</html>
+
+
+----------------------
+
+body {
+    background: #333;
+    color: #ddd;
+    font-family: 'Cooper Hewitt', sans-serif;
+    padding-top: 100px; }
+
+#puzzleContainer {
+    position: relative;
+    margin: 150px auto 20px; /* Ajustar el margen superior y mantener el inferior */
+    width: 400px;
+    height: 300px;
+    border: 1px solid #ddd;
+    background: #111;
+    transform: translateY(100px);
+}
+
+.puzzle-piece {
+    position: absolute;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+}
+
+.puzzle-piece span {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black;
+    font-weight: bold;
+}
+
+.show span {
+    display: block;
+}
+
+#controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+    z-index: 10;
+}
+
+#finalMessage {
+    position: fixed;
+    bottom: 80px; /* Ajusta la posición del mensaje */
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    opacity: 0;
+    z-index: 11;
+}
+#floatingTitle {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    z-index: 12;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+
+
+
+-----------------------------
+
+
+
 const PUZZLE_DIFFICULTY = 12; 
 const PIECE_SIZE = 200; // 200% más grande 
 const TAB_RATIO = 0.2; 

@@ -1,17 +1,32 @@
 body {
-    background: #333;
+    background: linear-gradient(135deg, #ff69b4, #ff1493, #f5f5f5);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
     color: #ddd;
-    font-family: Arial, sans-serif;
+    font-family: 'Cooper Hewitt', sans-serif;
+    padding-top: 100px;
 }
-
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+#buttonContainer {
+    display: flex; 
+    flex-direction: column;
+    padding-top: 100px; /* Ajusta este valor según lo necesites */
+}
+    
 #puzzleContainer {
     position: relative;
-    margin: 20px auto;
+    margin: 150px auto 20px; /* Ajustar el margen superior y mantener el inferior */
     width: 400px;
     height: 300px;
     border: 1px solid #ddd;
     background: #111;
+    transform: translateY(100px);
 }
+
 
 .puzzle-piece {
     position: absolute;
@@ -45,7 +60,10 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #007bff;
+    border: 100pxpx solid white; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Añadir una sombra suave */
+
+    background-color: #ff69b4;
     color: white;
     border: none;
     border-radius: 5px;
@@ -70,4 +88,28 @@ body {
     text-shadow: 2px 2px 4px #000000;
     opacity: 0;
     z-index: 11;
+}
+#floatingTitle {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    z-index: 12;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+.button:hover {
+    background-color: #c71585; /* Un color más oscuro al pasar el ratón */
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.4);
 }
